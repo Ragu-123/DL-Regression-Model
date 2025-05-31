@@ -45,15 +45,110 @@ Use the trained model to predict  for a new input value .
 ### Register Number:212222240081
 
 ```python
+import torch
+import torch.nn as nn  # Neural network module
+import matplotlib.pyplot as plt  # For plotting
+     
+
+#  Generate Input Data (X) and Output Data (y)
+torch.manual_seed(71)  # For reproducibility
+#Include your code here
+
+
+
+     
+
+# Plot the original data
+plt.scatter(X, y, color='red')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Generated Data for Linear Regression')
+plt.show()
+     
+
+# Define the Linear Model Class
 class Model(nn.Module):
     def __init__(self, in_features, out_features):
         super().__init__()
         #Include your code here
 
+    def forward(self, x):
+        #Include your code here
+     
+
+# Initialize the Model
+torch.manual_seed(59)  # Ensure same initial weights
+model = Model(1, 1)
+     
+
+# Print Initial Weights and Bias
+initial_weight = model.linear.weight.item()
+initial_bias = model.linear.bias.item()
+print("\nName: ")
+print("Register No: ")
+print(f'Initial Weight: {initial_weight:.8f}, Initial Bias: {initial_bias:.8f}\n')
+     
+
+# Define Loss Function & Optimizer
+loss_function =
+optimizer =
+     
+
+# Train the Model
+epochs = 100
+losses = []
+
+for epoch in range(1, epochs + 1):  # Loop over epochs
+    #Include your code here
 
 
-# Initialize the Model, Loss Function, and Optimizer
 
+
+
+    # Print loss, weight, and bias for EVERY epoch
+    print(f'epoch: {epoch:2}  loss: {loss.item():10.8f}  '
+          f'weight: {model.linear.weight.item():10.8f}  '
+          f'bias: {model.linear.bias.item():10.8f}')
+     
+
+# Plot Loss Curve
+plt.plot(range(epochs), losses, color='blue')
+plt.ylabel('Loss')
+plt.xlabel('Epoch')
+plt.title('Loss Curve')
+plt.show()
+     
+
+# Final Weights & Bias
+final_weight = model.linear.weight.item()
+final_bias = model.linear.bias.item()
+print("\nName: ")
+print("Register No: ")
+print(f'\nFinal Weight: {final_weight:.8f}, Final Bias: {final_bias:.8f}')
+     
+
+#  Best-Fit Line Calculation
+x1 = torch.tensor([X.min().item(), X.max().item()]) # Find min and max values of X
+y1 = x1 * final_weight + final_bias # Compute corresponding y-values using trained model
+     
+
+# Plot Original Data & Best-Fit Line
+plt.scatter(X, y, label="Original Data")
+plt.plot(x1, y1, 'r', label="Best-Fit Line")
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Trained Model: Best-Fit Line')
+plt.legend()
+plt.show()
+     
+
+# Prediction for x = 120
+x_new = torch.tensor([[120.0]])  # New input as a tensor
+y_new_pred = model(x_new).item()  # Predict using trained model
+print("\nName: ")
+print("Register No: ")
+print(f"\nPrediction for x = 120: {y_new_pred:.8f}")
+     
 ```
 
 ### Dataset Information
